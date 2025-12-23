@@ -35,16 +35,29 @@ body {
   align-items: center; /* key: vertically centers the photo against the text block */
 }
 
+/* photo column: stack + centered */
 .photo-col {
-  flex: 0 0 280px; /* fixed column like the screenshot */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* image itself */
 .photo {
+  display: block;
+  max-width: 280px;   /* adjust to taste */
   width: 100%;
   height: auto;
-  border-radius: 4px;
-  display: block;
 }
+
+/* caption under the image */
+.photo-caption {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #9a9a9a;
+  text-align: center;
+}
+
 
 .content {
   flex: 1 1 auto;
