@@ -1,3 +1,17 @@
+@font-face {
+  font-family: "CMU Sans";
+  src: url("fonts/cmunss.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "CMU Sans";
+  src: url("fonts/cmunssi.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+
 :root {
   --max-width: 1100px;
   --gap: 48px;
