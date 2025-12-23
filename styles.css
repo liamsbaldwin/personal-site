@@ -20,10 +20,7 @@
 * { box-sizing: border-box; }
 
 body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  color: #111;
-  background: #fff;
+  font-family: "CMU Sans", system-ui, sans-serif;
 }
 
 .page {
