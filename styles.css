@@ -85,13 +85,13 @@ p {
   max-width: none;
 }
 
-.links a {
-  color: #0645ad;
-  text-decoration: underline;
+a {
+  color: #1a73e8;
+  text-decoration: none;
 }
 
-.links a:hover {
-  opacity: 0.85;
+a:hover {
+  text-decoration: underline;
 }
 
 /* Mobile: stack photo above text */
