@@ -138,39 +138,40 @@ h2 {
 
 /* --- Row of book covers (Currently reading) --- */
 
-/* Row of 3 covers */
 .book-row {
   display: flex;
-  gap: 32px;
+  gap: 28px;                 /* slightly tighter */
   align-items: flex-start;
-  flex-wrap: wrap; /* wraps nicely on small screens */
+  flex-wrap: wrap;
 }
 
-/* Card sizing: smaller like before + same size regardless of image resolution */
+/* Card sizing: a bit smaller than before */
 .book-card {
   position: relative;
-  width: 240px;          /* ↓ smaller (was 300px) */
-  aspect-ratio: 2 / 3;   /* “book” shape */
-  border-radius: 18px;
+  width: 215px;              /* ↓ smaller (was 240px) */
+  aspect-ratio: 2 / 3;
+  border-radius: 16px;
   overflow: hidden;
   display: block;
-  text-decoration: none;
 
-  /* bring back the “cool shadow” / card feel */
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
-/* The cover image fills the card */
+/* Cover image */
 .book-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;     /* keeps consistent size */
+  object-fit: cover;
   transform: scale(1.01);
-  transition: filter 220ms ease, transform 220ms ease;
+  transition:
+    filter 200ms ease,
+    transform 200ms ease;
 }
 
-/* Overlay text layer (hidden by default) */
+/* Overlay text */
 .book-overlay {
   position: absolute;
   inset: 0;
@@ -179,47 +180,47 @@ h2 {
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 16px;
 
-  padding: 18px;
   opacity: 0;
-  transition: opacity 220ms ease;
+  transition: opacity 180ms ease;
 }
 
-/* Hover: subtle blur + subtle darken (less aggressive) */
+/* Hover: subtle blur + darken */
 .book-card:hover img {
-  filter: blur(6px) brightness(0.72); /* ↓ subtler than 10px + 0.55 */
-  transform: scale(1.04);
+  filter: blur(5px) brightness(0.74);
+  transform: scale(1.06);     /* ← bring back the “grow” */
 }
 
-/* Hover: slight lift + stronger shadow */
+/* Hover: lift + stronger shadow */
 .book-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  transform: translateY(-3px) scale(1.03);  /* ← card grows slightly */
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42); /* ← more intensity */
 }
 
-/* Hover: show text */
+/* Show overlay on hover */
 .book-card:hover .book-overlay {
   opacity: 1;
 }
 
-/* Title/author styling (no text shadow) */
+/* Title / author (unchanged, clean) */
 .book-title {
-  font-size: 30px;       /* tuned for smaller cards */
+  font-size: 28px;
   line-height: 1.05;
-  color: #fff;
   font-weight: 600;
-  margin-bottom: 12px;
+  color: #ffffff;
+  margin-bottom: 10px;
 }
 
 .book-author {
-  font-size: 22px;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 20px;
   font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
 }
 
-/* Mobile tweaks */
+/* Mobile */
 @media (max-width: 820px) {
-  .book-card { width: min(260px, 100%); }
-  .book-title { font-size: 26px; }
-  .book-author { font-size: 19px; }
+  .book-card { width: 200px; }
+  .book-title { font-size: 24px; }
+  .book-author { font-size: 18px; }
 }
