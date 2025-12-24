@@ -73,11 +73,9 @@ html.dark .theme-toggle {
   height: 18px;
 }
 
-
 html.dark .moon-icon {
   color: rgba(255,255,255,0.85);
 }
-
 
 * {
   box-sizing: border-box;
@@ -180,7 +178,6 @@ a:hover {
   }
 }
 
-
 h2 {
   margin-top: 36px;
   margin-bottom: 12px;
@@ -206,11 +203,10 @@ h2 {
   align-items: flex-start;
 }
 
-
 /* Card sizing: a bit smaller than before */
 .book-card {
   position: relative;
-  width: 215px;              /* ↓ smaller (was 240px) */
+  width: 215px;              /* desktop size */
   aspect-ratio: 2 / 3;
   border-radius: 16px;
   overflow: hidden;
@@ -220,6 +216,16 @@ h2 {
   transition:
     transform 180ms ease,
     box-shadow 180ms ease;
+
+  outline: none;             /* avoid default focus ring */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Optional: accessible focus ring only when keyboarding */
+.book-card:focus-visible {
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.28),
+    0 0 0 3px rgba(26, 115, 232, 0.35);
 }
 
 /* Cover image */
@@ -246,28 +252,32 @@ h2 {
 
   opacity: 0;
   transition: opacity 180ms ease;
+
+  pointer-events: none; /* lets taps/focus go to the card */
 }
 
-/* Hover: subtle blur + darken */
-/* Hover OR keyboard-focus (mobile tap + keyboard tab) */
+/* Hover OR tap-focus: blur + darken + grow + show overlay */
 .book-card:hover img,
+.book-card:focus img,
 .book-card:focus-visible img {
   filter: blur(5px) brightness(0.74);
   transform: scale(1.06);
 }
 
 .book-card:hover,
+.book-card:focus,
 .book-card:focus-visible {
   transform: translateY(-3px) scale(1.03);
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
 }
 
 .book-card:hover .book-overlay,
+.book-card:focus .book-overlay,
 .book-card:focus-visible .book-overlay {
   opacity: 1;
 }
 
-/* Title / author (unchanged, clean) */
+/* Title / author */
 .book-title {
   font-size: 28px;
   line-height: 1.05;
@@ -290,16 +300,16 @@ h2 {
   }
 
   .book-card {
-    width: calc((100% - 16px) / 2);  /* two columns with one gap */
-    max-width: 240px;                /* optional: keeps them from getting huge */
+    width: calc((100% - 16px) / 2); /* two columns with one gap */
+    max-width: none;                /* IMPORTANT: allow shrink to fit */
+    min-width: 0;                   /* IMPORTANT: allow shrink in flex */
   }
 
   .book-title { font-size: 22px; }
   .book-author { font-size: 16px; }
 }
 
-
-/* --- Dark mode --- */
+/* --- Dark mode (legacy vars kept, but harmless) --- */
 :root {
   --bg: #ffffff;
   --text: #000000;
@@ -313,15 +323,14 @@ body {
 
 /* dark theme overrides */
 .dark {
-  --bg: #1f1f1f;     /* dark grey */
-  --text: #ffffff;   /* white text */
+  --bg: #1f1f1f;
+  --text: #ffffff;
 }
 
-/* links stay the same color (you already set a { color: #1a73e8; }) */
-/* If you ever add other link styles elsewhere, this forces it: */
+/* links stay the same */
 a { color: #1a73e8; }
 
-/* moon button */
+/* moon button (duplicate block kept as you had it; harmless) */
 .theme-toggle {
   position: fixed;
   right: 18px;
@@ -331,31 +340,27 @@ a { color: #1a73e8; }
   height: 38px;
   padding: 0;
 
-  border: none;                 /* ← removes outline */
+  border: none;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(6px);
 
-  display: grid;                /* ← true centering */
-  place-items: center;          /* ← true centering */
+  display: grid;
+  place-items: center;
 
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-
 .theme-toggle:hover { opacity: 1; }
 
-/* optional: make it a touch easier to see on light backgrounds */
 .theme-toggle {
   backdrop-filter: blur(6px);
 }
 
 .theme-toggle svg {
-  display: block;               /* ← kills inline SVG baseline offset */
+  display: block;
   width: 18px;
   height: 18px;
 }
-
-
